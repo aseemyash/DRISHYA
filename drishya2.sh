@@ -57,7 +57,7 @@ sleep 0.5
 echo "."
 echo -e "[-] Geo location gathering Completed 🌩️"
 echo -e "\n\033[1;32m[+] Scanning the ports for Services...\033[m"
-nmap -sV  -T4 $ip
+nmap -Pn -sV -T4 $ip
 echo -e "[-] Port and Service scan completed 🌩️"
       printf "\n\n\e[92m=============================================\e[0m"
       printf "\n\n\e[92m  		 🌩️  OSINT COMPLETED 🌩️               \e[0m"
