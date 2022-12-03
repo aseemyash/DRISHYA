@@ -59,6 +59,35 @@ echo -e "[-] Geo location gathering Completed 🌩️"
 echo -e "\n\033[1;32m[+] Scanning the ports for Services...\033[m"
 nmap -Pn -sV -T4 $ip
 echo -e "[-] Port and Service scan completed 🌩️"
+
+
+echo -e  "\n\033[1;32m[+] do you want to use advanced recon features(yes/no): \033[m" 
+read yes
+if [ "$yes" = "yes" ];
+then
+ echo -e "\n\033[1;32m[+] if you want to enumerate username of SMB share kindly press y: \033[m"
+read y
+fi
+if [ "$y" = "y" ];
+then
+ enum4linux $ip 
+fi
+ echo -e "\n\033[1;32m[+] do you want to bruteforce login protocols(yes/no):"
+read yes
+if [ $yes = yes ];
+then
+ read -p "Specify the username:" u
+ read -p "Specify the password wordlist" pass
+ hydra -l $u -p $pass ssh://$ip
+fi
+echo -e "\n\033[1;32m[+] incase if any VNCs Protocols are open take control of it (ok/exit): \033[m:"
+read ok
+if [ "$ok" = "ok" ];
+then
+vinagre
+fi 
+
+
       printf "\n\n\e[92m=============================================\e[0m"
       printf "\n\n\e[92m  		 🌩️  OSINT COMPLETED 🌩️               \e[0m"
       printf "\n\n\e[92m              Stay secure ;)               \e[0m"
